@@ -7,7 +7,7 @@ const {
 
 /**
  * @description Retrieve the main user info (first name, last name, today score)
- * @param {number} id 
+ * @param {number} id
  */
 const getUserById = id => USER_MAIN_DATA
     .filter(user => user.id === id)
@@ -15,7 +15,7 @@ const getUserById = id => USER_MAIN_DATA
 
 
 /**
- * @param {number} id 
+ * @param {number} id
  */
 const getUserActivityById = id => USER_ACTIVITY
     .filter(userActivity => userActivity.userId === id)
@@ -23,7 +23,7 @@ const getUserActivityById = id => USER_ACTIVITY
 
 
 /**
- * @param {number} id 
+ * @param {number} id
  */
 const getUserAverageSession = id => USER_AVERAGE_SESSIONS
     .filter(userActivity => userActivity.userId === id)
@@ -31,7 +31,7 @@ const getUserAverageSession = id => USER_AVERAGE_SESSIONS
 
 
 /**
- * @param {number} id 
+ * @param {number} id
  */
 const getUserPerformance = id => USER_PERFORMANCE
     .filter(userPerformance => userPerformance.userId === id)
