@@ -1,0 +1,25 @@
+.navbar {
+  color: white;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  height: 90%;
+
+  & img {
+    width: 4rem;
+    margin: 1rem;
+  }
+
+  & span{
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+    margin-top: 3rem;
+    font-size: 12px;
+  }
+}
