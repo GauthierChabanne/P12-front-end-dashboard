@@ -1,0 +1,21 @@
+.small-card {
+  background-color: #FBFBFB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12rem;
+  padding: 1rem;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+.small-card__infos {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+.small-card__infos p {
+  margin: 0.5rem;
+}
+.small-card__infos__data {
+  font-weight: bolder;
+}/*# sourceMappingURL=SmallCard.css.map */
