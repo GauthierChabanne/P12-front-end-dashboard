@@ -9,6 +9,7 @@ import glucidIcon from "../assets/carbs-icon.svg"
 import lipidIcon from "../assets/fat-icon.svg"
 import SmallCard from '../components/SmallCard';
 import BigCard from '../components/BigCard';
+import MediumCard from "../components/MediumCard"
 
 function rightData(data){
   let logo = ""
@@ -62,26 +63,55 @@ function Home() {
         <p>Félicitations... vous avez explosé vos objectifs hier 👏</p>
       </header>
 
-      <main id="main-graph">
-        <BigCard
-          titre = "Activité quotidienne"
-          data = {userActivity.sessions}
-          id = "user-activity-graph"
-        />
-      </main>
+      <div className='userInfos'>
 
-      <aside className="small_cards">
-        {Object.entries(userMainInfos.keyData).map((data) => (
-          <SmallCard
-            key={rightData(data).type}
-            logo={rightData(data).logo}
-            type={rightData(data).type}
-            data={data[1]}
-            unit={rightData(data).unit}
-          />
-        ))}
-      </aside>
+        <main className="graphs">
+          <article id="main-graph">
+            <BigCard
+              title = "Activité quotidienne"
+              data = {userActivity.sessions}
+              id = "user-activity-graph"
+            />
+          </article>
 
+          <div className= "medium-graphs">
+
+            <MediumCard
+              type = "sessions"
+              title = "Durée moyenne des sessions"
+              data = {userAverageSessions.sessions}
+              id = "user-sessions-graph"
+            />
+
+            <MediumCard
+              type = "stats"
+              kind = {userPerformance.kind}
+              data = {userPerformance.data}
+              id = "user-stats-graph"
+            />
+
+            <MediumCard
+              type = "score"
+              data = {userMainInfos.score}
+              id = "user-score-graph"
+              title = "score"
+            />
+
+          </div>
+        </main>
+
+        <aside className="small_cards">
+          {Object.entries(userMainInfos.keyData).map((data) => (
+            <SmallCard
+              key={rightData(data).type}
+              logo={rightData(data).logo}
+              type={rightData(data).type}
+              data={data[1]}
+              unit={rightData(data).unit}
+            />
+          ))}
+        </aside>
+      </div>
     </div>
   )
 }

@@ -3,4 +3,10 @@
 }
 .user-welcome .userName {
   color: red;
+}
+
+.userInfos {
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
 }/*# sourceMappingURL=Home.css.map */
