@@ -8,8 +8,8 @@ import proteinIcon from "../assets/protein-icon.svg"
 import glucidIcon from "../assets/carbs-icon.svg"
 import lipidIcon from "../assets/fat-icon.svg"
 import SmallCard from '../components/SmallCard';
-import BigCard from '../components/BigCard';
-import MediumCard from "../components/MediumCard"
+import BigCard from '../components/bigCard';
+import MediumCard from "../components/mediumCard"
 
 function rightData(data){
   let logo = ""
@@ -74,7 +74,7 @@ function Home() {
             />
           </article>
 
-          <div className= "medium-graphs">
+          {/* <div className= "medium-graphs">
 
             <MediumCard
               type = "sessions"
@@ -97,7 +97,7 @@ function Home() {
               title = "score"
             />
 
-          </div>
+          </div> */}
         </main>
 
         <aside className="small_cards">
