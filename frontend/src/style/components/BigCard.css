@@ -1,3 +1,39 @@
-.tick line {
-  visibility: hidden;
+#main-graph {
+  height: 350px;
+  width: 600px;
+  margin-left: 5rem;
+}
+
+.dailyActivity {
+  width: 100%;
+  height: 320px;
+  margin-bottom: 30px;
+}
+
+.customLegend {
+  position: relative;
+  top: 28px;
+  left: 20px;
+  font-weight: 600;
+}
+
+.tooltipActivity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #E60000;
+  width: 39px;
+  height: 63px;
+  border: 1px solid #E60000;
+  font-size: 8px;
+}
+.tooltipActivity__unit {
+  width: 100%;
+  height: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }/*# sourceMappingURL=BigCard.css.map */

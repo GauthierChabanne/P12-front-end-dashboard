@@ -1,0 +1,17 @@
+.radarChart {
+  border: 1px solid #282D30;
+  width: 258px;
+  height: 263px;
+  background-color: #282D30;
+  border-radius: 5px;
+}
+.radarChart__container--radar .name {
+  color: white;
+}
+
+@media screen and (max-width: 1240px) {
+  .radarChart {
+    width: 238px;
+    height: 233px;
+  }
+}/*# sourceMappingURL=RadarChart.css.map */

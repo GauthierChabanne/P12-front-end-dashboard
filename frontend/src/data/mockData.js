@@ -261,10 +261,20 @@ const USER_PERFORMANCE = [
         ]
     }
 ]
+const averageDays = [
+  'L',
+  'M',
+  'M',
+  'J',
+  'V',
+  'S',
+  'D'
+];
 
 module.exports = {
     USER_MAIN_DATA,
     USER_ACTIVITY,
     USER_AVERAGE_SESSIONS,
-    USER_PERFORMANCE
+    USER_PERFORMANCE,
+    averageDays
 }

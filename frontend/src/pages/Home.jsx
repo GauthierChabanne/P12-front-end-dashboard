@@ -68,17 +68,15 @@ function Home() {
         <main className="graphs">
           <article id="main-graph">
             <BigCard
-              title = "Activité quotidienne"
               data = {userActivity.sessions}
               id = "user-activity-graph"
             />
           </article>
 
-          {/* <div className= "medium-graphs">
+          <div className= "medium-graphs">
 
             <MediumCard
               type = "sessions"
-              title = "Durée moyenne des sessions"
               data = {userAverageSessions.sessions}
               id = "user-sessions-graph"
             />
@@ -90,14 +88,14 @@ function Home() {
               id = "user-stats-graph"
             />
 
-            <MediumCard
+            {/* <MediumCard
               type = "score"
               data = {userMainInfos.score}
               id = "user-score-graph"
-              title = "score"
-            />
 
-          </div> */}
+            /> */}
+
+          </div>
         </main>
 
         <aside className="small_cards">
