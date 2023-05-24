@@ -1,0 +1,33 @@
+.scoreChart {
+  width: 258px;
+  height: 263px;
+  margin-right: 10px;
+  background-color: #FBFBFB;
+  border-radius: 5px;
+
+  &__percent {
+    // border: 1px solid blue;
+    position: relative;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    top: -160px;
+    left: 100px;
+    width: 60px;
+
+    .value {
+      // border: 1px solid red;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}
+
+// tablet responsiv
+@media screen and (max-width: 1240px) {
+  .scoreChart {
+    width: 238px;
+    height: 233px;
+  }
+}

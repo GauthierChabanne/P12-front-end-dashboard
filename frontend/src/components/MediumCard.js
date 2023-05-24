@@ -1,6 +1,8 @@
 import AverageSessions from "./AverageSessions"
 import RadarChart from "./RadarChart"
 import "../style/components/MediumCard.css"
+import ScoreChart from "./ScoreChart"
+import PropTypes from 'prop-types';
 
 
 function MediumCard(props){
@@ -17,7 +19,7 @@ function MediumCard(props){
         break;
 
       case "score":
-
+        returnee = (<ScoreChart data={props.score} />)
         break;
 
       default:
@@ -29,6 +31,14 @@ function MediumCard(props){
       {returnee}
     </div>
   )
+}
+
+MediumCard.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+  type: PropTypes.string,
+  id: PropTypes.string,
+  kind: PropTypes.object,
+  score: PropTypes.number
 }
 
 export default MediumCard

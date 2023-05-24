@@ -1,4 +1,5 @@
 import "../style/components/SmallCard.css"
+import PropTypes from 'prop-types';
 
 function SmallCard(props){
  return(
@@ -10,6 +11,13 @@ function SmallCard(props){
     </div>
   </div>
  )
+}
+
+SmallCard.propTypes = {
+  data: PropTypes.number,
+  logo: PropTypes.string,
+  type: PropTypes.string,
+  unit: PropTypes.string
 }
 
 export default SmallCard

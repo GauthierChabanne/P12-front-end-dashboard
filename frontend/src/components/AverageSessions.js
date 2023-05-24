@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { getAverage } from '../data/apiService';
 import { averageDays } from '../data/mockData';
 import "../style/components/AverageSessions.css"
+import PropTypes from 'prop-types';
 
 // Custom component for the recharts tooltip --- --- --- //
 function TooTipAverage({value, unit}){
@@ -16,32 +17,44 @@ function TooTipAverage({value, unit}){
 
 function AverageSessions(props) {
   // // Local state of data from the API //
-  const [averageData, setAverageData] = useState([]);
+  // const [averageData, setAverageData] = useState([]);
 
-  function isBuildingDataModel(data){
-    const newDataSet = [];
+  // function isBuildingDataModel(data){
+  //   const newDataSet = [];
 
-    data.map((e, index) => {
-      let newDataObject = {
-        value: e.sessionLength,
-        day: averageDays[index]
-      }
-      newDataSet.push(newDataObject)
-      return 0;
-    })
-    setAverageData(newDataSet);
-  }
+  //   data.map((e, index) => {
+  //     let newDataObject = {
+  //       value: e.sessionLength,
+  //       day: averageDays[index]
+  //     }
+  //     newDataSet.push(newDataObject)
+  //     return 0;
+  //   })
+  //   setAverageData(newDataSet);
+  // }
 
   // Request to the API //
-  async function fetchData() {
-    // const data = await getAverage()
-    const data = props.data
-    isBuildingDataModel(data);
-  }
+  // async function fetchData() {
+  //   // const data = await getAverage()
+  //   const data = props.data
+  //   isBuildingDataModel(data);
+  // }
 
   // useEffect(() => {
   //   fetchData();
   // })
+
+  const averageData = [];
+  const data = props.data
+
+  data.map((e, index) => {
+    let newDataObject = {
+      value: e.sessionLength,
+      day: averageDays[index]
+    }
+    averageData.push(newDataObject)
+    return 0;
+  })
 
   return (
     <div className="averageSessions">
@@ -61,6 +74,10 @@ function AverageSessions(props) {
       </ResponsiveContainer>
     </div>
   )
+}
+
+AverageSessions.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default AverageSessions

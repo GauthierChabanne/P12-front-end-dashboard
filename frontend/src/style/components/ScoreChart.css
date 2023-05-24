@@ -1,0 +1,27 @@
+.scoreChart {
+  width: 258px;
+  height: 263px;
+  margin-right: 10px;
+  background-color: #FBFBFB;
+  border-radius: 5px;
+}
+.scoreChart__percent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: -160px;
+  left: 100px;
+  width: 60px;
+}
+.scoreChart__percent .value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1240px) {
+  .scoreChart {
+    width: 238px;
+    height: 233px;
+  }
+}/*# sourceMappingURL=ScoreChart.css.map */

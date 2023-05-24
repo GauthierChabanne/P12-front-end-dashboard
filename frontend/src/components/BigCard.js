@@ -1,8 +1,8 @@
 import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip, Legend } from 'recharts';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useEffect } from 'react';
 import '../style/components/BigCard.css';
-import { getActivity } from '../data/apiService';
+import PropTypes from 'prop-types';
 
 function TooTipActivity({kilo, calo, kiloUnit, caloUnit}){
   return (
@@ -15,32 +15,38 @@ function TooTipActivity({kilo, calo, kiloUnit, caloUnit}){
 
 function BigCard(props) {
 
-  const [sessionData, setSessionData] = useState([]);
+  // const [sessionData, setSessionData] = useState([]);
 
   // Request from the API //
-  async function fetchData () {
-    // const data = await getActivity();
-    const data = props.data
-    // console.log(data)
+  // async function fetchData () {
+  //   // const data = await getActivity();
+  //   const data = props.data
+  //   // console.log(data)
 
-    data.map((item, index) =>{
+  //   data.map((item, index) =>{
+  //     item.day = index+1
+  //     return 0;
+  //   })
+
+  //   // console.log(data)
+  //   setSessionData(data);
+  // }
+
+  // useEffect(() => {
+  //   fetchData();
+  // })
+
+  const data = props.data
+  data.map((item, index) =>{
       item.day = index+1
       return 0;
     })
-
-    // console.log(data)
-    setSessionData(data);
-  }
-
-  useEffect(() => {
-    fetchData();
-  })
 
   return (
     <div className="dailyActivity">
       <div className='customLegend'> Activité quotidienne </div>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart width={730} height={250} data={sessionData} barGap='8'>
+        <BarChart width={730} height={250} data={data} barGap='8'>
           <CartesianGrid strokeDasharray="0 2 0" vertical={false}/>
           <XAxis dataKey="day" tickLine={false} />
           <YAxis orientation="right" axisLine={false} tickLine={false}/>
@@ -49,7 +55,7 @@ function BigCard(props) {
             if(!info.active){
               return null
             }
-            const activity = sessionData.find(session => session.day === info.label);
+            const activity = data.find(session => session.day === info.label);
             return <TooTipActivity kilo={activity.kilogram} calo={activity.calories} kiloUnit={'kg'} caloUnit={'Kcal'}/>
           }}/>
 
@@ -61,4 +67,9 @@ function BigCard(props) {
     </div>
   )
 }
+
+BigCard.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object)
+}
+
 export default BigCard

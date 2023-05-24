@@ -3,38 +3,53 @@ import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, Radar } fro
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getPerformance } from '../data/apiService';
+import PropTypes from 'prop-types';
 
 
-function RadarChartFrame(props) {
+function MyRadarChart(props) {
   // Local storage for the new data set //
-  const [finalData, setFinalData] = useState([]);
+  // const [finalData, setFinalData] = useState([]);
 
-  // Loop for create a new data set //
-  function isBuildingDataModel(valueDataObject, kind){
-    const finalDataSet = [];
-    valueDataObject.map((e, index) => {
-      let newDataObject = {
-        value: e.value,
-        kind: kind[index+1]
-      }
-      finalDataSet.push(newDataObject)
-      return 0;
-    })
+  const data = props.data
+  const kind = props.kind
+  const finalData = [];
+  data.map((e, index) => {
+    let newDataObject = {
+      value: e.value,
+      kind: kind[index+1]
+    }
+    finalData.push(newDataObject)
+    return 0;
+  })
 
-    setFinalData(finalDataSet);
-  }
+  // // Loop for create a new data set //
+  // function isBuildingDataModel(valueDataObject, kind){
+  //   const finalDataSet = [];
+  //   valueDataObject.map((e, index) => {
+  //     let newDataObject = {
+  //       value: e.value,
+  //       kind: kind[index+1]
+  //     }
+  //     finalDataSet.push(newDataObject)
+  //     return 0;
+  //   })
 
-  // Request form the API //
-  async function fetchData() {
-    // const data = await getPerformance();
-    const data = props.data
-    const kind = props.kind
-    isBuildingDataModel(data, kind);
-  }
+  //   setFinalData(finalDataSet);
+  // }
+
+  // // Request form the API //
+  // async function fetchData() {
+  //   // const data = await getPerformance();
+  //   const data = props.data
+  //   const kind = props.kind
+  //   isBuildingDataModel(data, kind);
+  // }
 
   // useEffect(() => {
   //   fetchData();
   // })
+
+
 
 
   return (
@@ -56,4 +71,9 @@ function RadarChartFrame(props) {
   )
 }
 
-export default RadarChartFrame;
+MyRadarChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+  kind: PropTypes.object
+}
+
+export default MyRadarChart;
