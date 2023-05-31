@@ -37,7 +37,7 @@ const USER_ACTIVITY = [
         sessions: [
             {
                 day: '2020-07-01',
-                kilogram: 80,
+                kilogram: 60,
                 calories: 240
             },
             {
@@ -77,7 +77,7 @@ const USER_ACTIVITY = [
         sessions: [
             {
                 day: '2020-07-01',
-                kilogram: 70,
+                kilogram: 60,
                 calories: 240
             },
             {

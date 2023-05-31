@@ -76,7 +76,7 @@ export const getPerformance = async (userId) => {
   try {
     const response = await fetch(`http://localhost:3000/user/${userId}/performance`, requestOptions);
     const jsonRes = await response.json();
-    return { value: jsonRes.data.data, kind: jsonRes.data.kind }
+    return { data: jsonRes.data.data, kind: jsonRes.data.kind }
 
   } catch {
     console.error();
