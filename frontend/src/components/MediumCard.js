@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 
 function MediumCard(props){
+  console.log(props.kind)
     const data = props.data
     const type = props.type
     let returnee = ""

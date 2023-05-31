@@ -64,88 +64,62 @@ function Home() {
   }
 
   let [userMainInfos, setUserMainInfos] = useState([]);
+  let [userFirstName, setUserFirstName] = useState([]);
+  let [userKeyData, setUserKeyData] = useState([]);
   let [userActivity, setUserActivity] = useState([]);
   let [userAverageSessions, setUserAverageSessions] = useState([]);
-  let [userPerformance, setUserPerformance] = useState([]);
+  let [userPerformanceKind, setUserPerformanceKind] = useState([]);
+  let [userPerformanceData, setUserPerformanceData] = useState([]);
 
-  async function fetchData(userId){
+  async function fetchData(){
     const mainInfos = await getUser(userId)
-    // console.log(mainInfos)
+    const firstName = await mainInfos.userInfos.firstName
+    const keyData = await mainInfos.keyData
     const activity = await getActivity(userId)
-    // console.log(activity)
     const averageSessions = await getAverage(userId)
-    // console.log(averageSessions)
     const performance = await getPerformance(userId)
-    // console.log(performance)
+    const performanceKind = await performance.kind
+    const performanceData = await performance.data
     setUserMainInfos(mainInfos)
+    setUserFirstName(firstName)
+    setUserKeyData(keyData)
     setUserActivity(activity)
     setUserAverageSessions(averageSessions)
-    setUserPerformance(performance)
+    setUserPerformanceKind(performanceKind)
+    setUserPerformanceData(performanceData)
   }
 
   useEffect(() => {
-    console.log("issue")
     if(api === "false" || api === null){
       const mainInfos = USER_MAIN_DATA.find((user) => user.id === parseInt(userId))
       setUserMainInfos(mainInfos)
+      const firstName = mainInfos.userInfos.firstName
+      setUserFirstName(firstName)
+      const keyData = mainInfos.keyData
+      console.log(mainInfos)
+      setUserKeyData(keyData)
       const activity = USER_ACTIVITY.find((user) => user.userId === parseInt(userId)).sessions
       setUserActivity(activity)
       const average = USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId)).sessions
-      // console.log(average)
       setUserAverageSessions(average)
       const performance = USER_PERFORMANCE.find((user) => user.userId === parseInt(userId))
-      setUserPerformance(performance)
+      const performanceKind = performance.kind
+      setUserPerformanceKind(performanceKind)
+      const performanceData = performance.data
+      setUserPerformanceData(performanceData)
     } else if(api === "true"){
-      console.log("ouch")
-      fetchData(userId);
+      fetchData();
     }
     }, [userId, api])
 
-  // if(index === 0){
-  //   userMainInfos = USER_MAIN_DATA.find((user) => user.id === parseInt(userId))
-  //   userActivity = USER_ACTIVITY.find((user) => user.userId === parseInt(userId))
-  //   userAverageSessions = USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId))
-  //   userPerformance = USER_PERFORMANCE.find((user) => user.userId === parseInt(userId))
-  // } else if (index === 1){
-    // useEffect(() => {
-    //   fetchData();
-    // },[userId])
-  // }
-
-  // async function waitUser(){
-  //   const userMainInfos = await getUser(userId)
-  //   console.log(userMainInfos)
-  //   const userActivity = await getActivity(userId)
-  //   const userAverageSessions = await getAverage(userId)
-  //   const userPerformance = await getPerformance(userId)
-  //   return {userMainInfos, userActivity, userAverageSessions, userPerformance}
-  // }
-
-  // let userMainInfos = ""
-  // let userActivity = ""
-  // let userAverageSessions = ""
-  // let userPerformance = ""
-
-  // if(index === 0){
-  //   userMainInfos = USER_MAIN_DATA.find((user) => user.id === parseInt(userId))
-  //   userActivity = USER_ACTIVITY.find((user) => user.userId === parseInt(userId))
-  //   userAverageSessions = USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId))
-  //   userPerformance = USER_PERFORMANCE.find((user) => user.userId === parseInt(userId))
-  // } else if (index === 1){
-  //   waitUser().then((user) => {
-  //     userMainInfos = user.userMainInfos
-  //     userActivity = user.userActivity
-  //     userAverageSessions = user.userAverageSessions
-  //     userPerformance = user.userPerformance
-  //   })
-  // }
+    console.log(userKeyData)
 
   return(
     <div className="container">
-      {/* <header className="user-welcome">
-        <h1>Bonjour <NavLink to={otherUserUrl} ><span className='userName'>{userMainInfos.userInfos.firstName}</span></NavLink></h1>
-        <p>Félicitations... {userMainInfos.userInfos.firstName} vous avez explosé vos objectifs hier 👏</p>
-      </header> */}
+      <header className="user-welcome">
+        <h1>Bonjour <NavLink to={otherUserUrl} ><span className='userName'>{userFirstName}</span></NavLink></h1>
+        <p>Félicitations... {userFirstName} vous avez explosé vos objectifs hier 👏</p>
+      </header>
 
       {api === "false" || api === null
         ? <button className="callButton" onClick={apiCall}>API call</button>
@@ -169,12 +143,12 @@ function Home() {
               id = "user-sessions-graph"
             />
 
-            {/* <MediumCard
+            <MediumCard
               type = "stats"
-              kind = {userPerformance.kind}
-              data = {userPerformance.data}
+              kind = {userPerformanceKind}
+              data = {userPerformanceData}
               id = "user-stats-graph"
-            /> */}
+            />
 
             <MediumCard
               type = "score"
@@ -185,8 +159,8 @@ function Home() {
           </div>
         </main>
 
-        {/* <aside className="small_cards">
-          {Object.entries(userMainInfos.keyData).map((data) => (
+        <aside className="small_cards">
+          {Object.entries(userKeyData).map((data) => (
             <SmallCard
               key={rightData(data).type}
               logo={rightData(data).logo}
@@ -195,7 +169,7 @@ function Home() {
               unit={rightData(data).unit}
             />
           ))}
-        </aside> */}
+        </aside>
       </div>
     </div>
   )
