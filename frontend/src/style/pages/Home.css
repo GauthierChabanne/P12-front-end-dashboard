@@ -12,9 +12,10 @@
 }
 
 .graphs {
-  margin-left: 7rem;
+  margin-left: 0;
 }
 
 .medium-graphs {
   display: flex;
+  justify-content: space-around;
 }/*# sourceMappingURL=Home.css.map */

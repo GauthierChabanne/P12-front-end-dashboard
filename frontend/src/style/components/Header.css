@@ -1,10 +1,22 @@
+@media screen and (max-width: 1240px) {
+  .header h3 {
+    margin: 1rem 3rem;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .header h3 {
+    margin: 1rem 6rem;
+  }
+}
 .header {
   background-color: black;
   color: white;
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }
 .header h3 {
   font-size: 20px;
+}
+.headerimg {
+  width: 8rem;
 }/*# sourceMappingURL=Header.css.map */

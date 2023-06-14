@@ -2,7 +2,7 @@ import '../style/pages/Home.css';
 import { useParams } from 'react-router-dom'
 import {useState, useEffect } from "react";
 import {USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE} from '../data/mockData.js'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import caloriesIcon from "../assets/calories-icon.svg"
 import proteinIcon from "../assets/protein-icon.svg"
 import glucidIcon from "../assets/carbs-icon.svg"
@@ -51,7 +51,6 @@ function Home() {
   const {userId} = useParams()
   const otherUserUrl = userId === "12" ? "/18" : "/12"
   const api = sessionStorage.getItem("api")
-  console.log(api)
 
   function mockCall(){
     sessionStorage.setItem("api", false);
@@ -96,7 +95,6 @@ function Home() {
       const firstName = mainInfos.userInfos.firstName
       setUserFirstName(firstName)
       const keyData = mainInfos.keyData
-      console.log(mainInfos)
       setUserKeyData(keyData)
       const activity = USER_ACTIVITY.find((user) => user.userId === parseInt(userId)).sessions
       setUserActivity(activity)
@@ -111,8 +109,6 @@ function Home() {
       fetchData();
     }
     }, [userId, api])
-
-    console.log(userKeyData)
 
   return(
     <div className="container">

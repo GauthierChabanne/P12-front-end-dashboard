@@ -1,33 +1,9 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
 import '../style/components/ScoreChart.css';
 import { ResponsiveContainer, PieChart, Pie, Legend } from 'recharts'
 import PropTypes from 'prop-types';
 
 
 function ScoreChart (props) {
-  // Local state for the data from api and custom values //
-  // const [scoreData, setScoreData] = useState([]);
-  // const [endAngle, setendAngle] = useState([]);
-
-  // useEffect(() => {
-  //   // Request from the API services //
-  //   function isFormatingData () {
-  //     const finalDataSet = [
-  //       {
-  //         "name": "Score",
-  //         "value": props.data * 100
-  //       },
-  //     ]
-
-  //     const endAngleSet = 90 + (props.data * 100 * 3.6); //90=startAngle 3.6=degree in percentage
-
-  //     // Set to local storage //
-  //     setendAngle(endAngleSet)
-  //     setScoreData(finalDataSet);
-  //   }
-  //   isFormatingData();
-  // })
 
   const scoreData = [
     {

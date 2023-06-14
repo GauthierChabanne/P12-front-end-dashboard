@@ -1,6 +1,4 @@
 import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip, Legend } from 'recharts';
-// import { useState } from 'react';
-import { useEffect } from 'react';
 import '../style/components/BigCard.css';
 import PropTypes from 'prop-types';
 
@@ -14,27 +12,6 @@ function TooTipActivity({kilo, calo, kiloUnit, caloUnit}){
 }
 
 function BigCard(props) {
-
-  // const [sessionData, setSessionData] = useState([]);
-
-  // Request from the API //
-  // async function fetchData () {
-  //   // const data = await getActivity();
-  //   const data = props.data
-  //   // console.log(data)
-
-  //   data.map((item, index) =>{
-  //     item.day = index+1
-  //     return 0;
-  //   })
-
-  //   // console.log(data)
-  //   setSessionData(data);
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // })
 
   const data = props.data
   data.map((item, index) =>{

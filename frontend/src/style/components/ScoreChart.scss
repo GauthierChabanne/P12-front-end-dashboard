@@ -1,6 +1,6 @@
 .scoreChart {
-  width: 258px;
-  height: 263px;
+  width: 250px;
+  height: 250px;
   margin-right: 10px;
   background-color: #FBFBFB;
   border-radius: 5px;
@@ -29,5 +29,10 @@
   .scoreChart {
     width: 200px;
     height: 200px;
+
+    &__percent {
+      top:-146px;
+      left:60px
+    }
   }
 }

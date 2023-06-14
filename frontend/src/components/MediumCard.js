@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 
 function MediumCard(props){
-  console.log(props.kind)
     const data = props.data
     const type = props.type
     let returnee = ""
@@ -38,7 +37,10 @@ MediumCard.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   type: PropTypes.string,
   id: PropTypes.string,
-  kind: PropTypes.object,
+  kind: PropTypes.oneOfType([
+          PropTypes.array,
+          PropTypes.object
+        ]),
   score: PropTypes.number
 }
 

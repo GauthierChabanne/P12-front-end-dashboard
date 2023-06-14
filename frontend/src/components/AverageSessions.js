@@ -1,8 +1,4 @@
-// import '../style/components/averageSessions.css';
 import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line, Legend } from 'recharts';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getAverage } from '../data/apiService';
 import { averageDays } from '../data/mockData';
 import "../style/components/AverageSessions.css"
 import PropTypes from 'prop-types';
@@ -16,33 +12,6 @@ function TooTipAverage({value, unit}){
 }
 
 function AverageSessions(props) {
-  // // Local state of data from the API //
-  // const [averageData, setAverageData] = useState([]);
-
-  // function isBuildingDataModel(data){
-  //   const newDataSet = [];
-
-  //   data.map((e, index) => {
-  //     let newDataObject = {
-  //       value: e.sessionLength,
-  //       day: averageDays[index]
-  //     }
-  //     newDataSet.push(newDataObject)
-  //     return 0;
-  //   })
-  //   setAverageData(newDataSet);
-  // }
-
-  // Request to the API //
-  // async function fetchData() {
-  //   // const data = await getAverage()
-  //   const data = props.data
-  //   isBuildingDataModel(data);
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // })
 
   const averageData = [];
   const data = props.data

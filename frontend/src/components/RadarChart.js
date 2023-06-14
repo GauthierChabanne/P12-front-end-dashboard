@@ -1,14 +1,9 @@
 import '../style/components/RadarChart.css';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, Radar } from 'recharts';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getPerformance } from '../data/apiService';
 import PropTypes from 'prop-types';
 
 
 function MyRadarChart(props) {
-  // Local storage for the new data set //
-  // const [finalData, setFinalData] = useState([]);
 
   const data = props.data
   const kind = props.kind
@@ -21,36 +16,6 @@ function MyRadarChart(props) {
     finalData.push(newDataObject)
     return 0;
   })
-
-  // // Loop for create a new data set //
-  // function isBuildingDataModel(valueDataObject, kind){
-  //   const finalDataSet = [];
-  //   valueDataObject.map((e, index) => {
-  //     let newDataObject = {
-  //       value: e.value,
-  //       kind: kind[index+1]
-  //     }
-  //     finalDataSet.push(newDataObject)
-  //     return 0;
-  //   })
-
-  //   setFinalData(finalDataSet);
-  // }
-
-  // // Request form the API //
-  // async function fetchData() {
-  //   // const data = await getPerformance();
-  //   const data = props.data
-  //   const kind = props.kind
-  //   isBuildingDataModel(data, kind);
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // })
-
-
-
 
   return (
     <div className="radarChart">
@@ -73,7 +38,10 @@ function MyRadarChart(props) {
 
 MyRadarChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
-  kind: PropTypes.object
+  kind: PropTypes.oneOfType([
+          PropTypes.array,
+          PropTypes.object
+        ]),
 }
 
 export default MyRadarChart;
