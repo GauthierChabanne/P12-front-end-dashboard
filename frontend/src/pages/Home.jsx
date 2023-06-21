@@ -69,23 +69,33 @@ function Home() {
   let [userAverageSessions, setUserAverageSessions] = useState([]);
   let [userPerformanceKind, setUserPerformanceKind] = useState([]);
   let [userPerformanceData, setUserPerformanceData] = useState([]);
+  let [errorApi, setErrorApi] = useState([])
 
   async function fetchData(){
     const mainInfos = await getUser(userId)
-    const firstName = await mainInfos.userInfos.firstName
-    const keyData = await mainInfos.keyData
     const activity = await getActivity(userId)
     const averageSessions = await getAverage(userId)
     const performance = await getPerformance(userId)
-    const performanceKind = await performance.kind
-    const performanceData = await performance.data
-    setUserMainInfos(mainInfos)
-    setUserFirstName(firstName)
-    setUserKeyData(keyData)
-    setUserActivity(activity)
-    setUserAverageSessions(averageSessions)
-    setUserPerformanceKind(performanceKind)
-    setUserPerformanceData(performanceData)
+    let error = false
+
+    if(mainInfos !== "error" || activity !== "error" || averageSessions !== "error"|| performance !== "error"){
+      const keyData = await mainInfos.keyData
+      const performanceKind = await performance.kind
+      const performanceData = await performance.data
+      const firstName = await mainInfos.userInfos.firstName
+      setUserMainInfos(mainInfos)
+      setUserFirstName(firstName)
+      setUserKeyData(keyData)
+      setUserActivity(activity)
+      setUserAverageSessions(averageSessions)
+      setUserPerformanceKind(performanceKind)
+      setUserPerformanceData(performanceData)
+      error = false
+      setErrorApi(error)
+    } else {
+      error = true
+      setErrorApi(error)
+    }
   }
 
   useEffect(() => {
@@ -108,67 +118,76 @@ function Home() {
     } else if(api === "true"){
       fetchData();
     }
-    }, [userId, api])
+  }, [userId, api])
 
-  return(
-    <div className="container">
-      <header className="user-welcome">
-        <h1>Bonjour <NavLink to={otherUserUrl} ><span className='userName'>{userFirstName}</span></NavLink></h1>
-        <p>Félicitations... {userFirstName} vous avez explosé vos objectifs hier 👏</p>
-      </header>
-
-      {api === "false" || api === null
-        ? <button className="callButton" onClick={apiCall}>API call</button>
-        : <button className='callButton' onClick={mockCall}>Mock call</button>
-      }
-
-      <div className='userInfos'>
-
-        <main className="graphs">
-          <article id="main-graph">
-            <BigCard
-              data = {userActivity}
-            />
-          </article>
-
-          <div className= "medium-graphs">
-
-            <MediumCard
-              type = "sessions"
-              data = {userAverageSessions}
-              id = "user-sessions-graph"
-            />
-
-            <MediumCard
-              type = "stats"
-              kind = {userPerformanceKind}
-              data = {userPerformanceData}
-              id = "user-stats-graph"
-            />
-
-            <MediumCard
-              type = "score"
-              score = {userMainInfos.score === undefined ? userMainInfos.todayScore : userMainInfos.score}
-              id = "user-score-graph"
-            />
-
-          </div>
-        </main>
-
-        <aside className="small_cards">
-          {Object.entries(userKeyData).map((data) => (
-            <SmallCard
-              key={rightData(data).type}
-              logo={rightData(data).logo}
-              type={rightData(data).type}
-              data={data[1]}
-              unit={rightData(data).unit}
-            />
-          ))}
-        </aside>
+  if(errorApi === true){
+    return(
+      <div className="container container-error">
+        <h1 className='api-error'>Informations monentanément indisponibles</h1>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return(
+      <div className="container">
+        <header className="user-welcome">
+          <h1>Bonjour <NavLink to={otherUserUrl} ><span className='userName'>{userFirstName}</span></NavLink></h1>
+          <p>Félicitations... {userFirstName} vous avez explosé vos objectifs hier 👏</p>
+        </header>
+
+        {api === "false" || api === null
+          ? <button className="callButton" onClick={apiCall}>API call</button>
+          : <button className='callButton' onClick={mockCall}>Mock call</button>
+        }
+
+        <div className='userInfos'>
+
+          <main className="graphs">
+            <article id="main-graph">
+              <BigCard
+                data = {userActivity}
+              />
+            </article>
+
+            <div className= "medium-graphs">
+
+              <MediumCard
+                type = "sessions"
+                data = {userAverageSessions}
+                id = "user-sessions-graph"
+              />
+
+              <MediumCard
+                type = "stats"
+                kind = {userPerformanceKind}
+                data = {userPerformanceData}
+                id = "user-stats-graph"
+              />
+
+              <MediumCard
+                type = "score"
+                score = {userMainInfos.score === undefined ? userMainInfos.todayScore : userMainInfos.score}
+                id = "user-score-graph"
+              />
+
+            </div>
+          </main>
+
+          <aside className="small_cards">
+            {Object.entries(userKeyData).map((data) => (
+              <SmallCard
+                key={rightData(data).type}
+                logo={rightData(data).logo}
+                type={rightData(data).type}
+                data={data[1]}
+                unit={rightData(data).unit}
+              />
+            ))}
+          </aside>
+        </div>
+      </div>
+    )
+  }
 }
+
 
 export default Home;

@@ -17,7 +17,7 @@ export const getUser = async (userId) => {
 
   } catch {
     console.error();
-    return [];
+    return "error";
   }
 };
 
@@ -38,7 +38,7 @@ export const getActivity = async (userId) => {
 
   } catch {
     console.error();
-    return [];
+    return "error";
   }
 };
 
@@ -59,7 +59,7 @@ export const getAverage = async (userId) => {
 
   } catch {
     console.error();
-    return [];
+    return "error";
   }
 };
 
@@ -80,6 +80,6 @@ export const getPerformance = async (userId) => {
 
   } catch {
     console.error();
-    return [];
+    return "error";
   }
 }
